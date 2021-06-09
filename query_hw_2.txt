@@ -1,6 +1,5 @@
 create table if not exists genres (
 	genre_id serial primary key,
-	artist_id int,
 	genre_name text
 );
 
@@ -13,13 +12,10 @@ create table if not exists artists (
 	foreign key(genre_id) references genres(genre_id)
 );
 
-alter table genres add constraint added_foreign_key_artist_id foreign key(artist_id) references artists(artist_id);
-
 create table if not exists albums (
 	album_id serial primary key,
 	artist_id int,
-	song_count int,
-	release_date date,
+	release_date int,
 	foreign key(artist_id) references artists(artist_id)
 );
 
@@ -27,6 +23,6 @@ create table if not exists tracks (
 	track_id serial primary key,
 	album_id int,
 	track_name text,
-	track_duration varchar(10),
+	track_duration int,
 	foreign key(album_id) references albums(album_id)
 );
